@@ -21,7 +21,7 @@
 
         <dependency>
             <groupId>com.francesca.pascalau</groupId>
-            <artifactId>adapters</artifactId>
+            <artifactId>data</artifactId>
             <version>0.0.1</version>
         </dependency>
     </dependencies>

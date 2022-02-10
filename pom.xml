@@ -11,7 +11,7 @@
     <modules>
         <module>application</module>
         <module>domain</module>
-        <module>adapters</module>
+        <module>data</module>
     </modules>
 
     <groupId>com.francesca.pascalau</groupId>
@@ -41,6 +41,17 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 </project>

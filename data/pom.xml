@@ -9,7 +9,7 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>adapters</artifactId>
+    <artifactId>data</artifactId>
     <name>${project.artifactId} ${project.version}</name>
 
     <dependencies>
@@ -17,6 +17,11 @@
             <groupId>com.francesca.pascalau</groupId>
             <artifactId>domain</artifactId>
             <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
         </dependency>
     </dependencies>
 </project>
