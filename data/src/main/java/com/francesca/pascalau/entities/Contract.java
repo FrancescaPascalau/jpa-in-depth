@@ -1,11 +1,13 @@
 package com.francesca.pascalau.entities;
 
+import lombok.Getter;
+
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Contract implements Serializable {
+@Getter
+public class Contract {
 
     @Id
     @Column(name = "CONTRACT_ID")
@@ -14,9 +16,9 @@ public class Contract implements Serializable {
 
     private String details;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contract")
+    @OneToMany(mappedBy = "contract")
     private List<Bill> bills;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "contract")
+    @OneToOne
     private Customer customer;
 }

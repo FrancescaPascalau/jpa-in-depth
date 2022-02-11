@@ -1,10 +1,12 @@
 package com.francesca.pascalau.entities;
 
+import lombok.Getter;
+
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class Bill implements Serializable {
+@Getter
+public class Bill {
 
     @Id
     @Column(name = "BILL_ID")
@@ -14,9 +16,8 @@ public class Bill implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     private Type type;
 
-    private double amount;
+    private long amount;
 
     @ManyToOne
-    @JoinColumn(name = "CONTRACT_ID", referencedColumnName = "CONTRACT_ID")
     private Contract contract;
 }

@@ -14,15 +14,17 @@
         <module>data</module>
     </modules>
 
+    <name>${project.artifactId} ${project.version}</name>
     <groupId>com.francesca.pascalau</groupId>
     <artifactId>learning-jpa</artifactId>
     <version>0.0.1</version>
     <packaging>pom</packaging>
-    <name>${project.artifactId} ${project.version}</name>
 
     <properties>
         <java.version>14</java.version>
         <lombok.version>1.18.22</lombok.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <mapstruct-processor.version>1.4.2.Final</mapstruct-processor.version>
     </properties>
 
     <dependencies>
@@ -52,6 +54,18 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct-processor.version}</version>
         </dependency>
     </dependencies>
 </project>

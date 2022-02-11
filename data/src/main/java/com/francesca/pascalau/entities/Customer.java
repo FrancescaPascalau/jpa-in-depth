@@ -1,10 +1,12 @@
 package com.francesca.pascalau.entities;
 
+import lombok.Getter;
+
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class Customer implements Serializable {
+@Getter
+public class Customer {
 
     @Id
     @Column(name = "CUSTOMER_ID")
@@ -14,8 +16,4 @@ public class Customer implements Serializable {
     private String firstName;
 
     private String lastName;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CONTRACT_ID")
-    private Contract contract;
 }
