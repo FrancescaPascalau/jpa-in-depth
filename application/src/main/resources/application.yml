@@ -6,10 +6,12 @@ spring:
     url: jdbc:h2:mem:jpa
     username: user
     password: password
-    driverClassName: org.h2.Driver
+    initialization-mode: always
+    platform: h2
+    driver-class-name: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddlAuto: create-drop
+      ddl-auto: create-drop
   h2:
     console.enabled: true

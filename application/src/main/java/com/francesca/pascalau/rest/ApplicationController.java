@@ -23,8 +23,8 @@ public class ApplicationController {
     private final ContractService contractService;
     private final BillService billService;
 
-    @PostMapping("/create")
-    public void createAll() {
+    @PostMapping("/create/bills")
+    public void createBills() {
         var contract = contractService.createContract(customerService.createCustomer());
 
         billService.addBill(contract, BillDto.Type.ELECTRICITY, 100L);
@@ -37,7 +37,7 @@ public class ApplicationController {
         return contractService.findAllBills(1L);
     }
 
-    @GetMapping
+    @GetMapping("/find/contracts")
     public ResponseEntity<Page<ContractDto>> getAllContracts(@RequestParam(defaultValue = "0") Integer pageNumber,
                                                              @RequestParam(defaultValue = "10") Integer pageSize) {
         Page<ContractDto> contracts = contractService.findAllContracts(pageNumber, pageSize);
