@@ -36,10 +36,10 @@ public class ContractCustomRepositoryImpl implements ContractCustomRepository {
 
     private String createQuery(ContractRequest request) {
         var query = new StringBuilder();
-        query.append("FROM contract c WHERE ");
+        query.append("FROM Contract c WHERE ");
 
         if (request.getCustomerId() != null)
-            query.append("c.customer_id = :customer_id AND");
+            query.append("c.id = :customer_id AND");
 
         return query.substring(0, query.toString().length() - 4);
     }
@@ -50,7 +50,7 @@ public class ContractCustomRepositoryImpl implements ContractCustomRepository {
     }
 
     private Long count(ContractRequest request) {
-        var query = entityManager.createQuery("SELECT COUNT(c.contract_id)" + createQuery(request), Long.class);
+        var query = entityManager.createQuery("SELECT COUNT(c.id)" + createQuery(request), Long.class);
         createParams(query, request);
 
         return query.getSingleResult();
