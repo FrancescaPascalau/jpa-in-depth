@@ -5,6 +5,7 @@ import com.francesca.pascalau.model.ContractDto;
 import com.francesca.pascalau.model.CustomerDto;
 import com.francesca.pascalau.port.ContractServicePort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -33,9 +34,9 @@ public class ContractService {
         return contractService.findAllBills(contractId);
     }
 
-    public List<ContractDto> findAllWithBills(Integer pageNo, Integer pageSize) {
-        Pageable paging = PageRequest.of(pageNo, pageSize);
+    public Page<ContractDto> findAllContracts(Integer pageNumber, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
-        return contractService.findAllContractsWithBills(paging);
+        return contractService.findAllContractsWithBills(pageable);
     }
 }
