@@ -12,6 +12,10 @@
     <artifactId>application</artifactId>
     <name>${project.artifactId} ${project.version}</name>
 
+    <properties>
+        <springdoc-openapi-ui.version>1.6.6</springdoc-openapi-ui.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.francesca.pascalau</groupId>
@@ -23,6 +27,12 @@
             <groupId>com.francesca.pascalau</groupId>
             <artifactId>data</artifactId>
             <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc-openapi-ui.version}</version>
         </dependency>
     </dependencies>
 </project>

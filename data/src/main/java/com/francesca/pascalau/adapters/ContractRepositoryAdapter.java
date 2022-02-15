@@ -7,6 +7,7 @@ import com.francesca.pascalau.model.ContractDto;
 import com.francesca.pascalau.port.ContractServicePort;
 import com.francesca.pascalau.repository.ContractRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,6 +31,14 @@ public class ContractRepositoryAdapter implements ContractServicePort {
                 .getBills()
                 .stream()
                 .map(BillMapper.INSTANCE::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ContractDto> findAllContractsWithBills(Pageable pageable) {
+        return contractRepository.findByBillsExists(pageable)
+                .stream()
+                .map(ContractMapper.INSTANCE::mapToDto)
                 .collect(Collectors.toList());
     }
 }

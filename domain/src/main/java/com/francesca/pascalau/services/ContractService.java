@@ -5,6 +5,8 @@ import com.francesca.pascalau.model.ContractDto;
 import com.francesca.pascalau.model.CustomerDto;
 import com.francesca.pascalau.port.ContractServicePort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +30,12 @@ public class ContractService {
     }
 
     public List<BillDto> findAllBills(Long contractId) {
-       return contractService.findAllBills(contractId);
+        return contractService.findAllBills(contractId);
+    }
+
+    public List<ContractDto> findAllWithBills(Integer pageNo, Integer pageSize) {
+        Pageable paging = PageRequest.of(pageNo, pageSize);
+
+        return contractService.findAllContractsWithBills(paging);
     }
 }

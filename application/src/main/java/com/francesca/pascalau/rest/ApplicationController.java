@@ -1,10 +1,15 @@
 package com.francesca.pascalau.rest;
 
+import com.francesca.pascalau.entities.Contract;
 import com.francesca.pascalau.model.BillDto;
+import com.francesca.pascalau.model.ContractDto;
 import com.francesca.pascalau.services.BillService;
 import com.francesca.pascalau.services.ContractService;
 import com.francesca.pascalau.services.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,5 +35,13 @@ public class ApplicationController {
     @GetMapping("/find/bills")
     public List<BillDto> findAllBills() {
         return contractService.findAllBills(1L);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ContractDto>> getAllContracts(@RequestParam(defaultValue = "0") Integer pageNo,
+                                                             @RequestParam(defaultValue = "2") Integer pageSize) {
+        List<ContractDto> contracts = contractService.findAllWithBills(pageNo, pageSize);
+
+        return new ResponseEntity<>(contracts, new HttpHeaders(), HttpStatus.OK);
     }
 }
