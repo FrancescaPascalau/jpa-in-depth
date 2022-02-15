@@ -41,9 +41,13 @@ public class ContractService {
         return contractService.findAllContractsWithBills(pageable);
     }
 
-    public Page<ContractDto> find(ContractRequest request, Integer pageNumber, Integer pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+    public Page<ContractDto> find(ContractRequest request) {
+        Pageable pageable = PageRequest.of(request.getPageNumber(), request.getPageSize());
 
         return contractService.findAll(request, pageable);
+    }
+
+    public List<ContractDto> findByCustomerId(Long customerId) {
+        return contractService.findAllByCustomerId(customerId);
     }
 }

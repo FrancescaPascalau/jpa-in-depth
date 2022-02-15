@@ -54,4 +54,11 @@ public class ContractRepositoryAdapter implements ContractServicePort {
                 .collect(Collectors.toList())
         );
     }
+
+    @Override
+    public List<ContractDto> findAllByCustomerId(Long customerId) {
+        return contractRepository.findByCustomerId(customerId).stream()
+                .map(ContractMapper.INSTANCE::mapToDto)
+                .collect(Collectors.toList());
+    }
 }

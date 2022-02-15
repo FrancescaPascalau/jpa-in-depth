@@ -43,10 +43,15 @@ public class ApplicationController {
         return new ResponseEntity<>(contracts, new HttpHeaders(), HttpStatus.OK);
     }
 
+    @GetMapping("/find/contracts/id")
+    public ResponseEntity<List<ContractDto>> getAllContracts(@RequestParam Long customerId) {
+        List<ContractDto> contracts = contractService.findByCustomerId(customerId);
+
+        return new ResponseEntity<>(contracts, new HttpHeaders(), HttpStatus.OK);
+    }
+
     @GetMapping("/find")
-    public Page<ContractDto> findContracts(final ContractRequest request,
-                                           @RequestParam Integer pageNumber,
-                                           @RequestParam Integer pageSize) {
-        return contractService.find(request, pageNumber, pageSize);
+    public Page<ContractDto> findContracts(final ContractRequest request) {
+        return contractService.find(request);
     }
 }
