@@ -54,4 +54,11 @@ public class ApplicationController {
     public Page<ContractDto> findContracts(final ContractRequest request) {
         return contractService.find(request);
     }
+
+    @DeleteMapping("/delete/customer")
+    public ResponseEntity<List<ContractDto>> deleteCustomer(@RequestParam Long customerId) {
+        customerService.delete(customerId);
+
+        return new ResponseEntity<>(new HttpHeaders(), HttpStatus.OK);
+    }
 }

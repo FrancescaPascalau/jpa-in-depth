@@ -1,11 +1,11 @@
 package com.francesca.pascalau.entities;
 
-import lombok.Getter;
+import lombok.Data;
 
 import javax.persistence.*;
 
+@Data
 @Entity
-@Getter
 public class Bill {
 
     @Id

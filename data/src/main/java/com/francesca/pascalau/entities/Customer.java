@@ -1,11 +1,16 @@
 package com.francesca.pascalau.entities;
 
+import lombok.Data;
 import lombok.Getter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
+@Data
 @Entity
-@Getter
+@SQLDelete(sql = "UPDATE Customer SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 public class Customer {
 
     @Id
@@ -16,4 +21,6 @@ public class Customer {
     private String firstName;
 
     private String lastName;
+
+    private Boolean deleted = Boolean.FALSE;
 }

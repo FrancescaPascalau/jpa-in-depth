@@ -17,4 +17,12 @@ public class CustomerRepositoryAdapter implements CustomerServicePort {
     public void create(CustomerDto customerDto) {
         customerRepository.save(CustomerMapper.INSTANCE.mapFromDto(customerDto));
     }
+
+    @Override
+    public void delete(Long customerId) {
+        var customer = customerRepository.findById(customerId);
+
+        if (customer.isPresent())
+            customerRepository.deleteById(customerId);
+    }
 }

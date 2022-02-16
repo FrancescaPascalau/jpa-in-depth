@@ -22,4 +22,8 @@ public class CustomerService {
 
         return customer;
     }
+
+    public void delete(Long customerId) {
+        customerService.delete(customerId);
+    }
 }
