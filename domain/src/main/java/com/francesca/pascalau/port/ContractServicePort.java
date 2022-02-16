@@ -19,4 +19,6 @@ public interface ContractServicePort {
     Page<ContractDto> findAll(ContractRequest request, Pageable pageable);
 
     List<ContractDto> findAllByCustomerId(Long customerId);
+
+    ContractDto findById(Long contractId);
 }

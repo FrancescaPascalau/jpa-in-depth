@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,5 +61,14 @@ public class ContractRepositoryAdapter implements ContractServicePort {
         return contractRepository.findByCustomerId(customerId).stream()
                 .map(ContractMapper.INSTANCE::mapToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ContractDto findById(Long contractId) {
+        var contract = contractRepository.findById(contractId).orElseThrow(RuntimeException::new);
+        contract.setDetails(contract.getDetails() + " World");
+
+        return ContractMapper.INSTANCE.mapToDto(contract);
     }
 }

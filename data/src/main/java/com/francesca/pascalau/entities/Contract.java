@@ -17,6 +17,8 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String details;
+
     @OneToMany(mappedBy = "contract")
     private List<Bill> bills;
 

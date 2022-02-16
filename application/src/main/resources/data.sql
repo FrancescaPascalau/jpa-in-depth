@@ -6,9 +6,9 @@ INSERT INTO `bill` (`bill_id`, `type`, `amount`, `version`) VALUES (11, 'ELECTRI
 INSERT INTO `bill` (`bill_id`, `type`, `amount`, `version`) VALUES (22, 'WATER', 50.0, 0);
 INSERT INTO `bill` (`bill_id`, `type`, `amount`, `version`) VALUES (33, 'GAS', 320.0, 0);
 
-INSERT INTO `contract` (`contract_id`) VALUES (100);
-INSERT INTO `contract` (`contract_id`) VALUES (200);
-INSERT INTO `contract` (`contract_id`) VALUES (300);
+INSERT INTO `contract` (`contract_id`, `details`, `created_at`, `updated_at`) VALUES (100, 'Hello', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO `contract` (`contract_id`, `details`, `created_at`, `updated_at`) VALUES (200, 'Hola', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO `contract` (`contract_id`, `details`, `created_at`, `updated_at`) VALUES (300, 'Ciao', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 UPDATE `contract` SET `customer_customer_id` = 1 WHERE `contract_id` = 100;
 UPDATE `contract` SET `customer_customer_id` = 2 WHERE `contract_id` = 200;

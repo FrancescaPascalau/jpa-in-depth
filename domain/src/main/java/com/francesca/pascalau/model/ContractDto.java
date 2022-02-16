@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -18,4 +18,6 @@ public class ContractDto {
     private String details;
     private List<BillDto> bills;
     private CustomerDto customer;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

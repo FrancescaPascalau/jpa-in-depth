@@ -50,4 +50,8 @@ public class ContractService {
     public List<ContractDto> findByCustomerId(Long customerId) {
         return contractService.findAllByCustomerId(customerId);
     }
+
+    public ContractDto findByContractId(Long contractId) {
+        return contractService.findById(contractId);
+    }
 }
