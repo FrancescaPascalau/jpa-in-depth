@@ -1,10 +1,12 @@
 package com.francesca.pascalau.entities;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
+@Setter
+@Getter
 @Entity
 public class Bill {
 
@@ -20,4 +22,7 @@ public class Bill {
 
     @ManyToOne
     private Contract contract;
+
+    @Version
+    private Long version = 0L;
 }

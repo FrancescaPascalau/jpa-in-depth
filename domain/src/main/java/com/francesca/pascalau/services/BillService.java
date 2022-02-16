@@ -20,4 +20,29 @@ public class BillService {
                 .contract(contract)
                 .build());
     }
+
+    public BillDto updateAmount(Long billId, Long amount) {
+        var bill = billService.addAmount(billId, amount);
+
+        sleep(2000);
+
+        return bill;
+    }
+
+    public BillDto addAmount(Long billId, Long amount) {
+        var bill = billService.findBill(billId);
+        bill.setAmount(bill.getAmount() + amount);
+
+        sleep(3000);
+
+        return billService.save(bill);
+    }
+
+    private void sleep(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

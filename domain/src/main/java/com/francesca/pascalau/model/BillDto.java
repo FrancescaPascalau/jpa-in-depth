@@ -13,7 +13,8 @@ public class BillDto {
 
     private Long id;
     private Type type;
-    private long amount;
+    private Long amount;
+    private Long version;
     private ContractDto contract;
 
     public enum Type {

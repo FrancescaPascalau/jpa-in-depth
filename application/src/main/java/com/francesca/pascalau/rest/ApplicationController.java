@@ -61,4 +61,20 @@ public class ApplicationController {
 
         return new ResponseEntity<>(new HttpHeaders(), HttpStatus.OK);
     }
+
+    @PutMapping("/update/amount")
+    public ResponseEntity<BillDto> updateAmountToBill(@RequestParam Long billId,
+                                                      @RequestParam Long amount) {
+        var bill = billService.updateAmount(billId, amount);
+
+        return new ResponseEntity<>(bill, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @PutMapping("/add/amount")
+    public ResponseEntity<BillDto> addAmountToBill(@RequestParam Long billId,
+                                                   @RequestParam Long amount) {
+        var bill = billService.addAmount(billId, amount);
+
+        return new ResponseEntity<>(bill, new HttpHeaders(), HttpStatus.OK);
+    }
 }
