@@ -1,20 +1,17 @@
 package com.francesca.pascalau.adapters;
 
-import com.francesca.pascalau.entities.LogRegistry;
 import com.francesca.pascalau.mapper.BillMapper;
 import com.francesca.pascalau.mapper.ContractMapper;
 import com.francesca.pascalau.model.BillDto;
 import com.francesca.pascalau.model.ContractDto;
 import com.francesca.pascalau.port.ContractServicePort;
 import com.francesca.pascalau.repository.ContractRepository;
-import com.francesca.pascalau.repository.LogRegistryRepository;
 import com.francesca.pascalau.request.ContractRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -25,7 +22,7 @@ import java.util.stream.Collectors;
 public class ContractRepositoryAdapter implements ContractServicePort {
 
     private final ContractRepository contractRepository;
-    private final LogRegistryRepository logRegistryRepository;
+    private final LogRegistryAdapter logRegistryAdapter;
 
     @Override
     public void create(ContractDto contractDto) {
@@ -76,22 +73,17 @@ public class ContractRepositoryAdapter implements ContractServicePort {
         return ContractMapper.INSTANCE.mapToDto(contract);
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(readOnly = true)
+//    @Transactional(readOnly = true, propagation = Propagation.NESTED, noRollbackFor = EntityNotFoundException.class) -- option 1
     public ContractDto findByIdWithLogs(Long contractId) {
-        saveLogRegistry("ContractRepositoryAdapter#findByIdWithLogs, start");
+        logRegistryAdapter.saveLogRegistry("ContractRepositoryAdapter#findByIdWithLogs, start");
 
         var contract = contractRepository.findById(contractId).orElseThrow(RuntimeException::new);
+//        var contract = contractRepository.findById(contractId).orElseThrow(Exception::new); -- option 2
         contract.setDetails(contract.getDetails() + " World");
 
-        saveLogRegistry("ContractRepositoryAdapter#findByIdWithLogs, stop");
+        logRegistryAdapter.saveLogRegistry("ContractRepositoryAdapter#findByIdWithLogs, stop");
 
         return ContractMapper.INSTANCE.mapToDto(contract);
-    }
-
-    private void saveLogRegistry(final String methodName) {
-        final LogRegistry logRegistry = new LogRegistry();
-        logRegistry.setMethod(methodName);
-
-        logRegistryRepository.save(logRegistry);
     }
 }
