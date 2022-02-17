@@ -54,4 +54,8 @@ public class ContractService {
     public ContractDto findByContractId(Long contractId) {
         return contractService.findById(contractId);
     }
+
+    public ContractDto findByContractIdWithLogs(Long contractId) {
+        return contractService.findByIdWithLogs(contractId);
+    }
 }

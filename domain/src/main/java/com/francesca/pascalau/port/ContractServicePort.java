@@ -21,4 +21,6 @@ public interface ContractServicePort {
     List<ContractDto> findAllByCustomerId(Long customerId);
 
     ContractDto findById(Long contractId);
+
+    ContractDto findByIdWithLogs(Long contractId);
 }
