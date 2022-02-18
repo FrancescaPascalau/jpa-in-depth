@@ -2,7 +2,7 @@
 
 This repo serves as a playground where I can try different JPA configurations and solutions to common problems.
 
------ Some concepts covered in this JPA project -----
+# ----- Some concepts covered in this JPA project -----
 
 # H2 - DDL
 
