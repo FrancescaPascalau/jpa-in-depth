@@ -1,6 +1,7 @@
 package com.francesca.pascalau.repository;
 
 import com.francesca.pascalau.entities.Bill;
+import com.francesca.pascalau.entities.Type;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +13,7 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 
     Optional<Bill> findById(Long id);
 
-    Optional<Bill> findByAmountBetween(Long min, Long max);
+    Optional<Bill> findByAmountBetweenAndType(Long minAmount, Long maxAmount, Type type);
 
     @Modifying
     @Transactional

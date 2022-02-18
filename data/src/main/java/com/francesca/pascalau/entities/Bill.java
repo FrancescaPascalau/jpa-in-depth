@@ -20,7 +20,7 @@ public class Bill {
 
     private long amount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Contract contract;
 
     @Version

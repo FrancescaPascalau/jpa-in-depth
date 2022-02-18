@@ -19,7 +19,7 @@ public class Contract {
 
     private String details;
 
-    @OneToMany(mappedBy = "contract")
+    @OneToMany(mappedBy = "contract", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Bill> bills;
 
     @OneToOne
