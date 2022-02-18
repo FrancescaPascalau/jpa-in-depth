@@ -9,6 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * Concept: JPQL and SQL
+ * Description: By default, the query definition uses JPQL (class definitions for fields).
+ * Solution: Set nativeQuery = true to enable SQL language instead of JPQL.
+ */
 public interface BillRepository extends JpaRepository<Bill, Long> {
 
     Optional<Bill> findById(Long id);
