@@ -22,6 +22,16 @@ This repo serves as a playground where I can try different JPA configurations an
 - `CascadeType.REFRESH` the child entity also gets reloaded from the database whenever the parent entity is refreshed.
 - `CascadeType.REPLICATE` used when we have more than one data source and we want the data in sync.
 
+# N+1 Problem
+
+- N+1 Problem is a performance issue in ORM that fires multiple select queries (N+1, N = nr. of records in table) for a
+  single select query.
+- Solutions:
+    1. `@EntityGraph` - the JPA provider loads all the graph in one select query and then avoids fetching with more
+       SELECT queries.
+    2. Query with Fetch Join - allows associations of values to be initialized along with their parent using a single
+       select.
+
 # Custom Repository
 
 - We can create our own custom repository if the body of the request is a custom object too. In the repo implementation
@@ -46,3 +56,34 @@ This repo serves as a playground where I can try different JPA configurations an
 - `Isolation` - is one of the common ACID properties: Atomicity, Consistency, Isolation, and Durability. Isolation
   describes how changes applied by concurrent transactions are visible to each other
 - We can open transactions within other transactions
+
+# FetchType.LAZY vs. FetchType.EAGER
+
+- Eager Loading - data initialization occurs on the spot, data associated and will store it in a memory.
+- Lazy Loading - defer initialization of an object as long as it's possible, data won't be initialized and loaded into a
+  memory until we make an explicit call to it.
+- `fetch = FetchType.LAZY` or `fetch = FetchType.EAGER`
+
+# DTO mapping
+
+- Mapping entities to DTOs in order to perform business login on the objects
+- Custom DTO converter or using `MapStruct` (code generator tool that simplifies the implementation of mappings and
+  auto-generates converters)
+
+# JQL (Java Query Language) and SQL
+
+- By default, the query definition uses JQL (class definitions for fields).
+- Set nativeQuery = true to enable SQL language instead of JQL.
+
+# Pagination
+
+- When finding all records that meet a specific criteria there can be performance issue as soon as the number of records
+  increases.
+- Using Pageable when can retrieve data by setting a limit on how many recorde we see at a time, by specifying the page
+  number and page size.
+
+# Soft Delete
+
+- Performs an update process to mark some data as deleted instead of physically deleting it from a table.
+- `@SQLDelete` with a where clause that updates an entity with a deleted value.
+- `@Modifying` and `@Transactional` needed on repository method to perform the delete action.

@@ -8,11 +8,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-/**
- * Concept: DTO mapping
- * Description: Mapping entities to DTOs in order to perform business login on the objects
- * Solution: Custom DTO converter or using MapStruct (code generator tool that simplifies the implementation of mappings)
- */
 @Mapper
 public interface ContractMapper {
 
